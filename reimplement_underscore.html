@@ -17,7 +17,7 @@ var _ = {}
 // seem very useful, but remember it-- if a function needs to provide an
 // iterator when the user does not pass one in, this will be handy.
 _.identity = function(val) {
-
+  return val;
 }
 
 // The .first function is implemented for you.
@@ -289,7 +289,7 @@ describe('identity', function() {
   })
 })
 
-describe('first', function() {
+xdescribe('first', function() {
   it('should be able to pull out the first element of an array', function() {
     expect_equal(_.first([1,2,3]), 1)
   })
@@ -307,7 +307,7 @@ describe('first', function() {
   })
 })
 
-describe('last', function() {
+xdescribe('last', function() {
   it('should pull the last element from an array', function() {
     expect_equal(_.last([1,2,3]), 3)
   })
