@@ -88,9 +88,11 @@ _.filter = function(collection, test) {
 
 // Return all elements of an array that don't pass a truth test.
 _.reject = function(collection, test) {
-    // TIP: see if you can re-use _.filter() here as a DEPENDENCY, rather than
-    // simply copying the filter code and modifying it
-
+  // TIP: see if you can re-use _.filter() here as a DEPENDENCY, rather than
+  // simply copying the filter code and modifying it
+  return _.filter(collection, function(val){
+    return !test(val);
+  });
 };
 
 // Produce a duplicate-free version of the array.
@@ -420,7 +422,7 @@ xdescribe('indexOf', function() {
   })
 })
 
-describe('filter', function() {
+xdescribe('filter', function() {
   it('should return all even numbers in an array', function() {
     var isEven = function(num) { return num % 2 === 0 }
     var evens = _.filter([1, 2, 3, 4, 5, 6], isEven)
@@ -444,7 +446,7 @@ describe('filter', function() {
   })
 })
 
-xdescribe('reject', function() {
+describe('reject', function() {
   it('should reject all even numbers', function() {
     var isEven = function(num) { return num % 2 === 0 }
     var odds = _.reject([1, 2, 3, 4, 5, 6], isEven)
