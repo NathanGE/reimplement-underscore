@@ -77,7 +77,13 @@ _.indexOf = function(array, target) {
 // Return all elements of an array that pass a truth test. Check out the
 // documentation provided at http://underscorejs.org/ for more information
 _.filter = function(collection, test) {
-
+  var result = [];
+  _.each(collection, function(item){
+    if( test(item) ){
+      result.push(item);
+    }
+  });
+  return result;
 };
 
 // Return all elements of an array that don't pass a truth test.
@@ -388,7 +394,7 @@ xdescribe('each', function() {
   })
 })
 
-describe('indexOf', function() {
+xdescribe('indexOf', function() {
   it('should find 40 in the list', function() {
     var numbers = [10, 20, 30, 40, 50]
 
@@ -414,7 +420,7 @@ describe('indexOf', function() {
   })
 })
 
-xdescribe('filter', function() {
+describe('filter', function() {
   it('should return all even numbers in an array', function() {
     var isEven = function(num) { return num % 2 === 0 }
     var evens = _.filter([1, 2, 3, 4, 5, 6], isEven)
