@@ -97,7 +97,13 @@ _.reject = function(collection, test) {
 
 // Produce a duplicate-free version of the array.
 _.uniq = function(array) {
-
+  var result = [];
+  _.each(array, function(item){
+    if(!result.includes(item)){
+      result.push(item);
+    }
+  });
+  return result;
 };
 
 
@@ -446,7 +452,7 @@ xdescribe('filter', function() {
   })
 })
 
-describe('reject', function() {
+xdescribe('reject', function() {
   it('should reject all even numbers', function() {
     var isEven = function(num) { return num % 2 === 0 }
     var odds = _.reject([1, 2, 3, 4, 5, 6], isEven)
@@ -470,7 +476,7 @@ describe('reject', function() {
   })
 })
 
-xdescribe('uniq', function() {
+describe('uniq', function() {
   it('should return all unique values contained in an unsorted array', function() {
     var numbers = [1, 2, 1, 3, 1, 4]
 
