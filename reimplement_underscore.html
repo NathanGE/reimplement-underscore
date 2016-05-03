@@ -109,9 +109,14 @@ _.uniq = function(array) {
 
 // Return the results of applying an iterator to each element.
 _.map = function(collection, iterator) {
-    // map() is a useful primitive iteration function that works a lot
-    // like each(), but in addition to running the operation on all
-    // the members, it also maintains and returns an array of resultant values.
+  // map() is a useful primitive iteration function that works a lot
+  // like each(), but in addition to running the operation on all
+  // the members, it also maintains and returns an array of resultant values.
+  result = [];
+  _.each(collection, function(item){
+    result.push(iterator(item));
+  });
+  return result;
 };
 
 /*
@@ -476,7 +481,7 @@ xdescribe('reject', function() {
   })
 })
 
-describe('uniq', function() {
+xdescribe('uniq', function() {
   it('should return all unique values contained in an unsorted array', function() {
     var numbers = [1, 2, 1, 3, 1, 4]
 
@@ -498,7 +503,7 @@ describe('uniq', function() {
   })
 })
 
-xdescribe('map', function() {
+describe('map', function() {
   it('should apply a function to every value in an array', function() {
     var doubledNumbers = _.map([1, 2, 3], function(num) {
       return num * 2
