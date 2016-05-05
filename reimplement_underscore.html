@@ -183,14 +183,19 @@ _.contains = function(collection, target) {
 
 // Determine whether all of the elements match a truth test.
 _.every = function(collection, iterator) {
-    // TIP: Try re-using reduce() here.
-
+  // TIP: Try re-using reduce() here.
+  if(iterator === undefined){
+    iterator = _.identity;
+  }
+  return _.reduce(collection, function(accumulator, item){
+    return !!(accumulator && iterator(item))
+  }, true);
 };
 
 // Determine whether any of the elements pass a truth test. If no iterator is
 // provided, provide a default one
 _.some = function(collection, iterator) {
-    // TIP: There's a very clever way to re-use every() here.
+  // TIP: There's a very clever way to re-use every() here.
 
 };
 
@@ -551,7 +556,7 @@ xdescribe('pluck', function() {
   })
 })
 
-describe('reduce', function() {
+xdescribe('reduce', function() {
   it('should be able to sum up an array', function() {
     var add = function(tally, item) {return tally + item }
     var total = _.reduce([1, 2, 3], add, 0)
@@ -596,7 +601,7 @@ xdescribe('contains', function() {
   })
 })
 
-xdescribe('every', function() {
+describe('every', function() {
   var isEven = function(num) {
     return num % 2 === 0
   }
