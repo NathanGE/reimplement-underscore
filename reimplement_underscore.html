@@ -196,7 +196,16 @@ _.every = function(collection, iterator) {
 // provided, provide a default one
 _.some = function(collection, iterator) {
   // TIP: There's a very clever way to re-use every() here.
-
+  if (collection.length < 1){
+    return false;
+  } else {
+    return !_.every(collection, function(val){
+      if (iterator === undefined){
+        iterator = _.identity
+      }
+      return !iterator(val);
+    });
+  }
 };
 
 // Extend a given object with all the properties of the passed in
@@ -601,7 +610,7 @@ xdescribe('contains', function() {
   })
 })
 
-describe('every', function() {
+xdescribe('every', function() {
   var isEven = function(num) {
     return num % 2 === 0
   }
@@ -644,7 +653,7 @@ describe('every', function() {
   })
 })
 
-xdescribe('some', function() {
+describe('some', function() {
   var isEven = function(number){
     return number % 2 === 0
   }
