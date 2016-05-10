@@ -220,7 +220,14 @@ _.some = function(collection, iterator) {
 //     bla: "even more stuff"
 //   }) // obj1 now contains key1, key2, key3 and bla
 _.extend = function(obj) {
-
+  for (var i = 1; i < arguments.length; i++){
+    var currentObject = arguments[i];
+    
+    for (var key in currentObject){
+      obj[key] = currentObject[key];
+    }
+  }
+  return obj;
 };
 
 
@@ -653,7 +660,7 @@ xdescribe('every', function() {
   })
 })
 
-describe('some', function() {
+xdescribe('some', function() {
   var isEven = function(number){
     return number % 2 === 0
   }
@@ -698,7 +705,7 @@ describe('some', function() {
   })
 })
 
-xdescribe('extend', function() {
+describe('extend', function() {
   it('returns the first argument', function() {
     var to = {}
     var from = {}
